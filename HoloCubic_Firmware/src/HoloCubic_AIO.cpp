@@ -128,8 +128,6 @@ void setup()
     app_controller->app_install(&anniversary_app);
     app_controller->app_install(&heartbeat_app, APP_TYPE_BACKGROUND);
 
-    // 自启动APP
-    // app_controller->app_auto_start();
     // 优先显示屏幕 加快视觉上的开机时间
     app_controller->main_process(&mpu.action_info);
 
@@ -158,7 +156,8 @@ void setup()
                                 200 / portTICK_PERIOD_MS,
                                 pdTRUE, (void *)0, actionCheckHandle);
     xTimerStart(xTimerAction, 0);
-
+    // 自启动APP
+    app_controller->app_auto_start();
     //开启定时器
     // Update display in parallel thread.
     // xTaskCreate(
